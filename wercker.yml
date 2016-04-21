@@ -1,13 +1,11 @@
 
-box: 
-  id: golang
-  command: /bin/sh
+box: golang
 dev:
   steps:
     - internal/watch:
         code: |
           go build ./...
-          ./source
+          ./source 
         reload: true
 build:
   steps:
@@ -17,9 +15,11 @@ build:
       # local 'wercker build' fails without a explicit package dir.
       package-dir: github.com/okke-formsma/right-pad
 
+    # Run go lint
+    - golint
+
     # Build the project
     - script:
         name: go build
         code: |
           go build ./...
- 

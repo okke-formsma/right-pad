@@ -9,11 +9,11 @@ import (
 
 
 func main() {
-	http.HandleFunc("/", rightpad_handler)
+	http.HandleFunc("/", rightpadHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
-func rightpad_handler(w http.ResponseWriter, r *http.Request) {
+func rightpadHandler(w http.ResponseWriter, r *http.Request) {
 	str := r.URL.Query().Get("str")
 	ch := r.URL.Query().Get("ch")
 	if ch == "" {
