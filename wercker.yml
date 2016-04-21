@@ -1,0 +1,25 @@
+
+box: 
+  id: golang
+  command: /bin/sh
+dev:
+  steps:
+    - internal/watch:
+        code: |
+          go build ./...
+          ./source
+        reload: true
+build:
+  steps:
+    # Sets the go workspace and places you package
+    # at the right place in the workspace tree
+    - setup-go-workspace:
+      # local 'wercker build' fails without a explicit package dir.
+      package-dir: github.com/okke-formsma/right-pad
+
+    # Build the project
+    - script:
+        name: go build
+        code: |
+          go build ./...
+ 
